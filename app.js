@@ -1,9 +1,16 @@
 const express = require('express');
 const { engine } = require ('express-handlebars');
+const routing = require('./routing')
+
+// importing bodyParser for parsing request data
+const bodyParser = require('body-parser');
 
 
 const app = express();
 const port = process.env.PORT || 3001;
+
+//
+routing(app)
 
 //for dinamic files like html views exc...
 app.engine("handlebars", engine({defaultLayout: 'main'}));
@@ -14,8 +21,14 @@ app.set('views', './views');
 app.use(express.static(__dirname + '/public'))
 
 
-app.get("/", (req, res) => res.render("home"));
-app.get("/recognitions", (req, res) => res.render("recognitions"));
+
+//passing data with a post
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+app.post("/registration",  (req, res) =>{
+  console.log(req.body)
+})
 
 
 
