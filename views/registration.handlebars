@@ -1,4 +1,36 @@
-<form  method="POST">
-    <input type="text" name="username" id="xxx"/>
+<div id="containerForm">
+<form  method="POST" action="/registration" enctype="multipart/form-data"> {{! enctype="multipart/form-data" is used for the file upload in a form}}
+    <label>Nome</label>
+    <br>
+    <input type="text" name="name" id="idName"/>
+    <br>
+    <label>Cognome</label>
+    <br>
+    <input type="text" name="surname" id="idSurname"/>
+    <br>
+    <label>Email</label>
+    <br>
+    <input type="email" name="email" id="idEmail"/>
+    <br>
+    <label>Età</label>
+    <br>
+    <input type="number" name="age" id="idAge"/>
+    <br>
+    <label>Sesso</label>
+    <br>
+    <label>Femmina </label>
+    <input type="radio" name="genderF" id="idFemale" value="female"/>
+    <label>Maschio </label>
+    <input type="radio" name="genderM" id="idMale" value="male"/>
+    <br>
+    <label>GreenPass</label>
+    <br>
+    <input type="file" name="greenpass" id="idPass"/>
+    <br>
+    <label>Faccia</label>
+    <br>
+    <input type="file" name="face" id="idFace"/>
+    <br>
     <input type="submit" value="Invia"/>
 </form>
+</div>
