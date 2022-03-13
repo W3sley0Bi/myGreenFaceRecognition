@@ -1,12 +1,11 @@
 const video = document.getElementById('video')
 
+
 //laoding Models
 Promise.all([
   faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
   faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
- // faceapi.nets.faceExpressionNet.loadFromUri('/models')
-  
 ]).then(startVideo)
 
 function startVideo() {
@@ -24,7 +23,8 @@ async function recognizeFaces() {
 const labeledDescriptors = await loadLabeledImages()
 const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors, 0.7)
 
-video.addEventListener('play', async () => {
+video.play()
+video.onplay = async () => {
   console.log('Playing')
   const canvas = faceapi.createCanvasFromMedia(video)
   document.body.append(canvas)
@@ -46,11 +46,11 @@ video.addEventListener('play', async () => {
       drawBox.draw(canvas)
   })
   }, 100)
-})
+}
 }
 
 function loadLabeledImages() {
-   const labels = ['Wesley Obi'] // for WebCam
+   const labels = ['Wesley Obi', 'Paola Conti', 'Manuela Rozzi', 'Davide Defilippi'] // for WebCam
   return Promise.all(
       labels.map(async (label)=>{
           const descriptions = []
