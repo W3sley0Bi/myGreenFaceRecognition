@@ -3,11 +3,15 @@ const { engine } = require ('express-handlebars');
 //importing my custom module
 const routing = require('./src/routing')
 
+const upload = require('express-fileupload')
+
 // importing bodyParser for parsing request data
 const bodyParser = require('body-parser');
 
-
+//creating my application
 const app = express();
+
+//defining what port to use.
 const port = process.env.PORT || 3001;
 
 //calling my custom modules for routing
@@ -26,8 +30,20 @@ app.use(express.static(__dirname + '/public'))
 //this is making the post (req.body) possible
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(upload())
+
+app.get("/registration",  (req, res) =>{
+
+  res.sendFile(__dirname + './uploadFaces')
+})
 
 app.post("/registration",  (req, res) =>{
+  if(req.files.face){
+    let face = req.files.face
+    console.log(face.name)
+    face.mv('./uploadFaces/'+face.name)
+    
+  }
   console.log(req.body)
   
 })
