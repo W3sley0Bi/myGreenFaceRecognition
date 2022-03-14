@@ -8,6 +8,9 @@ const upload = require('express-fileupload')
 // importing bodyParser for parsing request data
 const bodyParser = require('body-parser');
 
+
+const uri = process.env.MONGODB_URI;
+
 //creating my application
 const app = express();
 
