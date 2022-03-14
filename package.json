@@ -16,7 +16,8 @@
     "multiparty": "^4.2.3",
     "node": "^17.4.0",
     "nodemon": "^2.0.15",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "npm": "^8.5.4"
   },
   "scripts": {
     "build": "node start"
