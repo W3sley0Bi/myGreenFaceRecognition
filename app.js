@@ -1,6 +1,7 @@
 const express = require('express');
 const { engine } = require ('express-handlebars');
-const routing = require('./routing')
+//importing my custom module
+const routing = require('./src/routing')
 
 // importing bodyParser for parsing request data
 const bodyParser = require('body-parser');
@@ -9,7 +10,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3001;
 
-//
+//calling my custom modules for routing
 routing(app)
 
 //for dinamic files like html views exc...
@@ -22,12 +23,13 @@ app.use(express.static(__dirname + '/public'))
 
 
 
-//passing data with a post
+//this is making the post (req.body) possible
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.post("/registration",  (req, res) =>{
   console.log(req.body)
+  
 })
 
 
