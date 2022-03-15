@@ -4,19 +4,22 @@ const { engine } = require ('express-handlebars');
 const routing = require('./src/routing')
 
 const upload = require('express-fileupload')
-
+const mongoose = require('mongoose')
 // importing bodyParser for parsing request data
 const bodyParser = require('body-parser');
 
 
 
-const uri = process.env.MONGODB_URI;
+
 
 //creating my application
 const app = express();
 
+//connect to mongodb
+const dbURI = "mongodb+srv://Crocker:2wpuxhM0dnU9SQNm@facedb.eaiqv.mongodb.net/FaceGreen?retryWrites=true&w=majority"
+mongoose.connect(dbURI)
 //defining what port to use.
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 //calling my custom modules for routing
 routing(app)
