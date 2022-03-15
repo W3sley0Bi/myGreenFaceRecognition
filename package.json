@@ -22,9 +22,10 @@
   },
   "engines": {
     "node": "16.14.0",
-    "npm": "6.14.13"
+    "npm": "8.5.4"
   },
   "scripts": {
+    "start": "node app.js",
     "build": "node start"
   },
   "keywords": [],
