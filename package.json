@@ -24,7 +24,6 @@
     "npm": "8.5.4"
   },
   "scripts": {
-    "start": "node app.js",
     "build": "node start"
   },
   "keywords": [],
