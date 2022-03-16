@@ -72,8 +72,8 @@ app.get("/registration",  (req, res) =>{
 app.post("/registration",  (req, res) =>{
  // const xxx = `${req.body.name} ${req.body.surname}`
  // console.log(xxx)
- // regData(req.body) sending data to db
- res.send(req.flash('message'))
+ regData(req.body)
+// res.send(req.flash('message'))
  res.redirect('/recognitions');
   
   /* error if i use this to move the file photo 
