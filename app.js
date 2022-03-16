@@ -2,6 +2,8 @@ const express = require('express');
 const { engine } = require ('express-handlebars');
 const upload = require('express-fileupload')
 const mongoose = require('mongoose')
+const flash = require('connect-flash');
+const session = require('express-session')
 //importing my custom module
 const routing = require('./src/routing')
 //const userSchema = require('./src/dbmodels')
@@ -46,7 +48,13 @@ app.set('views', './views');
 // for statc element like files or static pages
 app.use(express.static(__dirname + '/public'))
 
+app.use(session({
+  secret: 'secret key',
+  resave: true,
+  saveUninitialized: true
+}));
 
+app.use(flash())
 
 //this is making the post (req.body) possible
 app.use(bodyParser.json())
@@ -55,14 +63,18 @@ app.use(upload())
 
 app.get("/registration",  (req, res) =>{
   //here create a function that create a new Folder with the name and the surname of the user
-  res.sendFile(__dirname + './uploadFaces')
-  res.render(`Data submission complited ${req.body}`)
+ 
+ // res.sendFile(__dirname + './uploadFaces') pushing mages in that folder
+ req.flash('message', 'Submission success');
+ 
 })
 
 app.post("/registration",  (req, res) =>{
-  const xxx = `${req.body.name} ${req.body.surname}`
-  console.log(xxx)
-  regData(req.body) //
+ // const xxx = `${req.body.name} ${req.body.surname}`
+ // console.log(xxx)
+ // regData(req.body) sending data to db
+ res.send(req.flash('message'))
+ res.redirect('/recognitions');
   
   /* error if i use this to move the file photo 
   if(req.files.face){
@@ -71,7 +83,7 @@ app.post("/registration",  (req, res) =>{
     face.mv('./uploadFaces/'+face.name)
     
   }*/
-  //regData(req.body)
+
   
   
 })
