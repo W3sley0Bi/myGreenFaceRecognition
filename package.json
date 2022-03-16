@@ -22,7 +22,6 @@
   },
   "scripts": {
     "start": "node app.js",
-    "build": "webpack",
     "devStart": "nodemon app.js"
   },
   "keywords": [],
