@@ -17,9 +17,7 @@
     "multiparty": "^4.2.3",
     "node": "^16.14.0",
     "node-pre-gyp": "^0.17.0",
-    "path": "^0.12.7",
-    "webpack": "^5.70.0",
-    "webpack-cli": "^4.9.2"
+    "path": "^0.12.7"
   },
   "engines": {
     "node": "16.14.0",
