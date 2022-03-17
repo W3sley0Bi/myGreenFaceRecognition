@@ -50,8 +50,12 @@ video.onplay = async () => {
 
 let myDatas = []
 
+let localData = 'http://localhost:3000/registrationHandler'
+
+let herokuData = 'https://face-greenpass.herokuapp.com/registrationHandler'
+
 async function fetchDB (){
-  const res = await fetch('http://localhost:3000/registrationHandler')
+  const res = await fetch(herokuData)
   const data = await res.json();
   myDatas = data
   console.log(myDatas)
