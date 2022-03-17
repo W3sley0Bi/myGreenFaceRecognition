@@ -50,7 +50,7 @@ video.onplay = async () => {
 }
 
 function loadLabeledImages() {
-   const labels = ['Wesley Obi', 'Paola Conti', 'Manuela Rozzi', 'Davide Defilippi'] // for WebCam
+   const labels = ['Wesley Obi', 'Paola Conti'] // for WebCam
   return Promise.all(
       labels.map(async (label)=>{
           const descriptions = []
