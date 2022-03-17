@@ -10,9 +10,8 @@ Promise.all([
 async function startVideo() {
   console.log('Models Loading Completed')
   navigator.mediaDevices.getUserMedia(
-    { video: {} },
-    stream => video.srcObject = stream,
-    err => console.error(err)
+    { video: true }
+
   )
   recognizeFaces()
 }
