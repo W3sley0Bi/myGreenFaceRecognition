@@ -2,43 +2,43 @@
 <form  method="POST" action="/registration" enctype="multipart/form-data"> {{! enctype="multipart/form-data" is used for the file upload in a form}}
     <label>Nome</label>
     <br>
-    <input type="text" name="name" id="idName" />
+    <input type="text" name="name" id="idName" required="true"/>
     <br>
     <label>Cognome</label>
     <br>
-    <input type="text" name="surname" id="idSurname" />
+    <input type="text" name="surname" id="idSurname" required="true" />
     <br>
     <label>Email</label>
     <br>
-    <input type="email" name="email" id="idEmail" />
+    <input type="email" name="email" id="idEmail" required="true"/>
     <br>
     <label>Età</label>
     <br>
-    <input type="number" name="age" id="idAge"/>
+    <input type="number" name="age" id="idAge"required="true"/>
     <br>
     <br>
     <label>Sesso</label>
     <br>
     <label>Femmina </label>
-    <input type="radio" name="gender" id="idFemale" value="female" />
+    <input type="radio" name="gender" id="idFemale" value="female" required="true"/>
     <br>
     <label>Maschio </label>
-    <input type="radio" name="gender" id="idMale" value="male"/>
+    <input type="radio" name="gender" id="idMale" value="male"required="true"/>
     <br>
     <br>
     <label>GreenPass</label>
     <br>
-    <input type="file" name="greenpass" id="idPass"/>
+    <input type="file" name="greenpass" id="idPass" required="true"/>
     <br>
     <br>
     <label>Faccia1</label>
     <br>
-    <input type="file" name="face1" id="idFace"/>
+    <input type="file" name="face1" id="idFace"required="true"/>
     <br>
     <br>
     <label>Faccia2</label>
     <br>
-    <input type="file" name="face2" id="idFace"/>
+    <input type="file" name="face2" id="idFace" required="true"/>
     <br>
     <br>
     <input type="submit" value="Invia"/>
