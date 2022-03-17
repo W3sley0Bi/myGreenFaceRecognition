@@ -8,7 +8,7 @@ Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
 ]).then(startVideo)
 
-function startVideo() {
+async function startVideo() {
   console.log('Models Loading Completed')
   navigator.getUserMedia(
     { video: {} },
