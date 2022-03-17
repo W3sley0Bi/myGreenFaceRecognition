@@ -23,7 +23,7 @@ async function recognizeFaces() {
 const labeledDescriptors = await loadLabeledImages()
 const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors, 0.7)
 
-//video.play()
+video.play()
 video.onplay = async () => {
   console.log('Playing')
   const canvas = faceapi.createCanvasFromMedia(video)
