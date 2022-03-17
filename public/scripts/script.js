@@ -1,6 +1,5 @@
 const video = document.getElementById('video')
 
-
 //laoding Models
 Promise.all([
   faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
@@ -49,8 +48,22 @@ video.onplay = async () => {
 }
 }
 
+let myDatas = []
+
+async function fetchDB (){
+  const res = await fetch('http://localhost:3000/registrationHandler')
+  const data = await res.json();
+  myDatas = data
+  console.log(myDatas)
+  return data
+  }
+
+  console.log(myDatas)
+  fetchDB()
 function loadLabeledImages() {
-   const labels = ['Wesley Obi', 'Paola Conti'] // for WebCam
+
+   const labels = myDatas // for WebCam
+   console.log(labels)
   return Promise.all(
       labels.map(async (label)=>{
           const descriptions = []

@@ -1,42 +1,20 @@
 const express = require('express');
 const { engine } = require ('express-handlebars');
 const upload = require('express-fileupload')
-const mongoose = require('mongoose')
-const flash = require('connect-flash');
-const session = require('express-session')
-//importing my custom module
-const routing = require('./src/routing')
-//const userSchema = require('./src/dbmodels')
+const fs = require('fs')
 
+const path = require('path')
 // importing bodyParser for parsing request data
 const bodyParser = require('body-parser');
-
+//importing my custom module
+const routing = require('./src/routing')
+const regFrom = require('./src/dbConnection');
+const dbCaller = require('./src/retrivingFname')
 
 //creating my application
 const app = express();
-
-//connect to mongodb
-const dbURI = "mongodb+srv://Crocker:2wpuxhM0dnU9SQNm@facedb.eaiqv.mongodb.net/FaceGreen?retryWrites=true&w=majority"
-mongoose.connect(dbURI)
-.then(result => console.log('connected'))
-.catch(err => console.log(err))
-
-// database schema data (setting a scheme fro the db data)
-const userSchema = new mongoose.Schema({
-  data: Object,
-},{collection: "user_collection"})
-//define the collection where the data can be storaged
-const regFrom = mongoose.model("user_collection", userSchema)
-// function form passing the date into the DB
-const regData = (bodyData) =>{
-  regFrom({data: bodyData}).save((err) => {
-   if (err) {throw err}
-   })
-}
-
 //defining what port to use.
 const port = process.env.PORT || 3000;
-
 //calling my custom modules for routing
 routing(app)
 
@@ -48,45 +26,67 @@ app.set('views', './views');
 // for statc element like files or static pages
 app.use(express.static(__dirname + '/public'))
 
-app.use(session({
-  secret: 'secret key',
-  resave: true,
-  saveUninitialized: true
-}));
-
-app.use(flash())
-
 //this is making the post (req.body) possible
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(upload())
 
-app.get("/registration",  (req, res) =>{
-  //here create a function that create a new Folder with the name and the surname of the user
- 
- // res.sendFile(__dirname + './uploadFaces') pushing mages in that folder
- req.flash('message', 'Submission success');
- 
-})
+
+
 
 app.post("/registration",  (req, res) =>{
- // const xxx = `${req.body.name} ${req.body.surname}`
- // console.log(xxx)
- regData(req.body)
-// res.send(req.flash('message'))
- res.redirect('/recognitions');
-  
-  /* error if i use this to move the file photo 
-  if(req.files.face){
-    let face = req.files.face
-    console.log(face.name)
-    face.mv('./uploadFaces/'+face.name)
-    
-  }*/
+  //generating subfolder with the imgaes data
+  const folderName = `${req.body.name}_${req.body.surname}`
+const folderPath = `${__dirname}/public/labeled_images/${folderName}`
 
-  
+try {
+  if (!fs.existsSync(folderPath)) {
+    fs.mkdirSync(folderPath)
+  }
+} catch (err) {
+  console.error(err)
+} 
+
+ regData(req.body,folderName)
+//mving photos into the folders
+  if(req.files.face1){
+    let face1 = req.files.face1
+    face1.name = "1.JPG" // changing file name for the script.js
+     face1.mv(`./public/labeled_images/${folderName}/${face1.name}`)
+  }
+  if(req.files.face2){
+    let face2 = req.files.face2
+    face2.name = "2.JPG"
+    face2.mv(`./public/labeled_images/${folderName}/${face2.name}`)
+  }
+
+
+  res.redirect('/recognitions');
   
 })
+
+app.get('/registrationHandler',(req,res)=>{
+  regFrom.find({}, {folderName :1}, (err,result)=>{
+    if(err) console.warn(err)
+    let myArr = []
+    for(let i = 0; i < result.length; i++){
+        myArr = [...myArr,result[i].folderName]
+    
+    }
+    console.log(myArr)
+    res.json(myArr)
+  
+  })
+})
+
+
+
+//uploading data function
+const regData = (bodyData,fName,/*greenimg*/) =>{
+  regFrom({data: bodyData, folderName:fName/*, greenPassImg:greenimg*/}).save((err) => {
+   if (err) {throw err}
+   })
+}
 
 
 
