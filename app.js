@@ -3,13 +3,12 @@ const { engine } = require ('express-handlebars');
 const upload = require('express-fileupload')
 const fs = require('fs')
 
-const path = require('path')
 // importing bodyParser for parsing request data
 const bodyParser = require('body-parser');
 //importing my custom module
 const routing = require('./src/routing')
 const regFrom = require('./src/dbConnection');
-const dbCaller = require('./src/retrivingFname')
+
 
 //creating my application
 const app = express();
@@ -49,17 +48,27 @@ try {
 
  regData(req.body,folderName)
 //mving photos into the folders
+
+
+
+  if(req.files.greenpass){
+    let pass = req.files.greenpass
+    pass.name = `${folderName}.JPG` // changing file name for the script.js
+    pass.mv(`./public/labeled_images/greenpassFolder/${pass.name}`)
+  }
+
   if(req.files.face1){
+    face1.mv(`./public/labeled_images/FacesImages/${face1.name}`)
     let face1 = req.files.face1
     face1.name = "1.JPG" // changing file name for the script.js
      face1.mv(`./public/labeled_images/${folderName}/${face1.name}`)
   }
   if(req.files.face2){
     let face2 = req.files.face2
+    face2.mv(`./public/labeled_images/FacesImages/${face2.name}`)
     face2.name = "2.JPG"
     face2.mv(`./public/labeled_images/${folderName}/${face2.name}`)
   }
-
 
   res.redirect('/recognitions');
   
@@ -79,8 +88,6 @@ app.get('/registrationHandler',(req,res)=>{
   })
 })
 
-
-
 //uploading data function
 const regData = (bodyData,fName,/*greenimg*/) =>{
   regFrom({data: bodyData, folderName:fName/*, greenPassImg:greenimg*/}).save((err) => {
@@ -88,6 +95,14 @@ const regData = (bodyData,fName,/*greenimg*/) =>{
    })
 }
 
+/* Tring to serve a dossier image
+app.get('/dossier',(req,res)=>{
+  
+ var files =fs.readdirSync('./public/FacesImages')
+console.log(files)
+
+})
+*/
 
 
 
