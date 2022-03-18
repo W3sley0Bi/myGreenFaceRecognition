@@ -50,7 +50,6 @@ try {
 //mving photos into the folders
 
 
-
   if(req.files.greenpass){
     let pass = req.files.greenpass
     pass.name = `${folderName}.JPG` // changing file name for the script.js
@@ -58,8 +57,9 @@ try {
   }
 
   if(req.files.face1){
-    face1.mv(`./public/labeled_images/FacesImages/${face1.name}`)
+    
     let face1 = req.files.face1
+    face1.mv(`./public/labeled_images/FacesImages/${face1.name}`)
     face1.name = "1.JPG" // changing file name for the script.js
      face1.mv(`./public/labeled_images/${folderName}/${face1.name}`)
   }
