@@ -49,23 +49,23 @@ try {
  regData(req.body,folderName)
 //mving photos into the folders
 
-
+/*
   if(req.files.greenpass){
     let pass = req.files.greenpass
     pass.name = `${folderName}.JPG` // changing file name for the script.js
     pass.mv(`./public/labeled_images/greenpassFolder/${pass.name}`)
   }
-
+*/
   if(req.files.face1){
     
     let face1 = req.files.face1
-    face1.mv(`./public/labeled_images/FacesImages/${face1.name}`)
+ //   face1.mv(`./public/labeled_images/FacesImages/${face1.name}`)
     face1.name = "1.JPG" // changing file name for the script.js
      face1.mv(`./public/labeled_images/${folderName}/${face1.name}`)
   }
   if(req.files.face2){
     let face2 = req.files.face2
-    face2.mv(`./public/labeled_images/FacesImages/${face2.name}`)
+   // face2.mv(`./public/labeled_images/FacesImages/${face2.name}`)
     face2.name = "2.JPG"
     face2.mv(`./public/labeled_images/${folderName}/${face2.name}`)
   }
