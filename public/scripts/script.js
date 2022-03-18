@@ -1,5 +1,5 @@
 const video = document.getElementById('video')
-
+video.setAttribute("playsinline", true);
 //laoding Models
 Promise.all([
   faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
