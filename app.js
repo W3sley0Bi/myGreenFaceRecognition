@@ -2,6 +2,7 @@ const express = require('express');
 const { engine } = require ('express-handlebars');
 const upload = require('express-fileupload')
 const fs = require('fs')
+const { randomUUID } = require('crypto'); // Added in: node v14.17.0 generate unique ID
 
 // importing bodyParser for parsing request data
 const bodyParser = require('body-parser');
@@ -35,9 +36,9 @@ app.use(upload())
 
 app.post("/registration",  (req, res) =>{
   //generating subfolder with the imgaes data
-  const folderName = `${req.body.name}_${req.body.surname}`
+  const folderName = `${req.body.name}_${req.body.surname}_${randomUUID()}`
 const folderPath = `${__dirname}/public/labeled_images/${folderName}`
-
+console.log(folderName)
 try {
   if (!fs.existsSync(folderPath)) {
     fs.mkdirSync(folderPath)
@@ -89,20 +90,26 @@ app.get('/registrationHandler',(req,res)=>{
 })
 
 //uploading data function
-const regData = (bodyData,fName,/*greenimg*/) =>{
+const regData = (bodyData,fName/*greenimg*/) =>{
   regFrom({data: bodyData, folderName:fName/*, greenPassImg:greenimg*/}).save((err) => {
    if (err) {throw err}
    })
 }
 
-/* Tring to serve a dossier image
-app.get('/dossier',(req,res)=>{
+// Tring to serve a dossier image [custom api]
+app.get('/dossierAPI',(req,res)=>{
   
- var files =fs.readdirSync('./public/FacesImages')
+/*var files =fs.readdirSync('./public/FacesImages')
 console.log(files)
+*/
+regFrom.find({}, (err,result)=>{
+  if(err) console.warn(err)
+  res.json(result)
+})
+
 
 })
-*/
+
 
 
 
