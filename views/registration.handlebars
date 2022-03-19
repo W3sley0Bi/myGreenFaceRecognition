@@ -9,7 +9,7 @@
     inserisci solo lettere maiuscole o minuscole.
 </h2>
 
-<form  method="POST" action="/registration" enctype="multipart/form-data"> {{! enctype="multipart/form-data" is used for the file upload in a form}}
+<form  onsubmit="alertFunction()" method="POST" action="/registration" enctype="multipart/form-data"> {{! enctype="multipart/form-data" is used for the file upload in a form}}
     <label>Nome</label>
     <br>
     <input type="text" name="name" id="idName" required="true"/> <!--this regex exclude special caracter spaces and numbers-->
@@ -51,9 +51,19 @@
     <input type="file" name="face2" id="idFace" required="true"/>
     <br>
     <br>
-    <input type="submit" value="Invia"/>
+    <input type="submit"  value="Invia"/>
 </form>
 </div>
+
+
+<script>
+  function alertFunction(){
+alert('Registrazione effettuata con successo. Clicca OK per essere reindirizzato. Non regitrarti nuovamnete!')
+    }
+</script>
+
+
+
 {{!
 https://usefulangle.com/post/352/javascript-capture-image-from-camera
 

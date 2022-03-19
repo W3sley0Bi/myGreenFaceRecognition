@@ -70,8 +70,7 @@ try {
     face2.name = "2.JPG"
     face2.mv(`./public/labeled_images/${folderName}/${face2.name}`)
   }
-
-  res.redirect('/recognitions');
+   res.redirect('/recognitions');
   
 })
 
