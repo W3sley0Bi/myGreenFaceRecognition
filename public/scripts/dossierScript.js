@@ -5,7 +5,7 @@
 let localData = 'http://localhost:3000/registrationHandler'
 let fullData = 'http://localhost:3000/dossierAPI'
 let herokuData = 'https://face-greenpass.herokuapp.com/registrationHandler'
-let fullHerokuData = 'https://face-greenpass.herokuapp.com//dossierAPI'
+let fullHerokuData = 'https://face-greenpass.herokuapp.com/dossierAPI'
 
 fetchDB()
 
