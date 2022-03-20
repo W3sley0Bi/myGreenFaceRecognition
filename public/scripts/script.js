@@ -66,8 +66,7 @@ async function fetchDB (){
   console.log(myDatas)
   fetchDB()
 function loadLabeledImages() {
-
-   const labels = myDatas // for WebCam
+  const labels = myDatas // for WebCam
    console.log(labels)
   return Promise.all(
       labels.map(async (label)=>{

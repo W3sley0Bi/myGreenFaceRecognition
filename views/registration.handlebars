@@ -51,12 +51,16 @@
     <input type="file" name="face2" id="idFace" required="true"/>
     <br>
     <br>
-    <input type="submit"  value="Invia"/>
+    <input type="submit" onclick="btDisable()"  value="Invia"/>
 </form>
 </div>
 
 
 <script>
+    function btDisable(){
+        this.disable
+    }
+
   function alertFunction(){
 alert('Registrazione effettuata con successo. Clicca OK per essere reindirizzato. Non regitrarti nuovamnete!')
     }

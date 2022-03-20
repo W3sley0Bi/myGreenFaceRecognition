@@ -1,9 +1,13 @@
+*{
+  font-family: "Source Code Pro","monaco","PT Mono","Courier",monospace;
+}
+
 body {
     margin: 0;
     padding: 0;
     width: 100vw;
     height: 100vh;
-    /*display: flex; /*senza display flex non funziona*/
+    /*display: flex;*/
     justify-content: center;
 
   }
@@ -28,7 +32,14 @@ body {
     text-align: center;
   }
 
-  #wrapperHome{
+  #wrapperHome,#wrapperNews,#adminPage{
     margin-left: 20%;
     margin-right: 20%;
+  }
+
+  .theTeam,#adminPage{
+    text-align: center;
+  }
+  #adminPage{
+  margin-top: 20%;
   }
