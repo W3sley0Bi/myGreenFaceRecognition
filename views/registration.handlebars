@@ -2,14 +2,11 @@
 <br>
 <div id="containerForm">
 
-<h2>Sto lavorando per risolvere i problemi con la validazione del Form nei campi nome e cognome
-    <br>
-    per cortesia non inserire spazi, caratteri speciali (es. *{[è#.: etc) e numeri. 
-    <br>
-    inserisci solo lettere maiuscole o minuscole.
-</h2>
+<h1>
+    Registration
+</h1>
 
-<form  onsubmit="alertFunction()" method="POST" action="/registration" enctype="multipart/form-data"> {{! enctype="multipart/form-data" is used for the file upload in a form}}
+<form id="regForm"onsubmit="alertFunction()" method="POST" action="/registration" enctype="multipart/form-data"> {{! enctype="multipart/form-data" is used for the file upload in a form}}
     <label>Nome</label>
     <br>
     <input type="text" name="name" id="idName" required="true"/> <!--this regex exclude special caracter spaces and numbers-->
@@ -51,15 +48,15 @@
     <input type="file" name="face2" id="idFace" required="true"/>
     <br>
     <br>
-    <input type="submit" onclick="btDisable()"  value="Invia"/>
+    <input type="submit"  value="Invia"/>
 </form>
 </div>
 
 
 <script>
-    function btDisable(){
-        this.disable
-    }
+    $('#regForm').submit(function(){
+    $(this).find(':input[type=submit]').prop('disabled', true);
+});
 
   function alertFunction(){
 alert('Registrazione effettuata con successo. Clicca OK per essere reindirizzato. Non regitrarti nuovamnete!')

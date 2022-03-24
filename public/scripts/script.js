@@ -25,6 +25,7 @@ const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors, 0.7)
 
 video.play()
 video.onplay = async () => {
+  $('.FaceIdImages').css("display", "none")
   console.log('Playing')
   const canvas = faceapi.createCanvasFromMedia(video)
   document.body.append(canvas)
