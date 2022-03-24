@@ -108,14 +108,11 @@ regFrom.find({}, (err,result)=>{
 })
 
 
-
-let img404 = '/public/img/404imgPage.gif'
-
 // 404 page
 app.use((req, res) => {
   res.type('text/plain')
     res.status(404)
-    res.sendFile(__dirname + img404)
+    res.sendFile(__dirname + '/public/img/404imgPage.gif')
     
 });
 
@@ -125,7 +122,7 @@ app.use((err, req, res, next) => {
     console.error(err.message)
     res.type('text/plain')
     res.status(500)
-    res.send('500 - Server Error')
+    res.sendFile(__dirname + '/public/img/500errorPage.gif')
     })
 
 app.listen(port);
