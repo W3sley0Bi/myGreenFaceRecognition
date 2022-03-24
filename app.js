@@ -109,12 +109,14 @@ regFrom.find({}, (err,result)=>{
 
 
 
+let img404 = '/public/img/404imgPage.gif'
 
 // 404 page
 app.use((req, res) => {
   res.type('text/plain')
     res.status(404)
-    res.send('404 - Not Found D-:')
+    res.sendFile(__dirname + img404)
+    
 });
 
 
