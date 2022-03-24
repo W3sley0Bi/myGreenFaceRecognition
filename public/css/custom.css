@@ -42,8 +42,14 @@ body {
   .theTeam,#adminPage{
     text-align: center;
   }
+
   #adminPage{
-  margin-top: 20%;
+  margin-top: 30rem;
+  background-color: white;
+  width: 151px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   #GlitchFace,
