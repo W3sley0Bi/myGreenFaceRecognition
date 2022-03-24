@@ -64,7 +64,6 @@ async function fetchDB (){
   return data
   }
 
-  console.log(myDatas)
   fetchDB()
 function loadLabeledImages() {
   const labels = myDatas // for WebCam

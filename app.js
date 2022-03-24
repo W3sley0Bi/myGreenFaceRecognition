@@ -38,7 +38,6 @@ app.post("/registration",  (req, res) =>{
   //generating subfolder with the imgaes data
   const folderName = `${req.body.name}_${req.body.surname}_${randomUUID()}`
 const folderPath = `${__dirname}/public/labeled_images/${folderName}`
-console.log(folderName)
 try {
   if (!fs.existsSync(folderPath)) {
     fs.mkdirSync(folderPath)
@@ -82,7 +81,6 @@ app.get('/registrationHandler',(req,res)=>{
         myArr = [...myArr,result[i].folderName]
     
     }
-    console.log(myArr)
     res.json(myArr)
   
   })
