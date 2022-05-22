@@ -7,7 +7,7 @@ I'm currently looking for a green-pass api for checking the greenpass validity o
 
 ## Execution 
 
-Download the project and:
+Download the project and run npm install in the console:
 1) change the variable <const dbURI> in dbConnection.js file and connect your mongodb db.
 2) change herokuData with localData in function fetchDB for testing it with your local data. File position => public/scripts/script.js
   
