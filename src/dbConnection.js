@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 
 //connect to mongodb
-const dbURI = "mongodb+srv://Crocker:2wpuxhM0dnU9SQNm@facedb.eaiqv.mongodb.net/FaceGreen?retryWrites=true&w=majority"
+const dbURI = "mongodb+srv://<yourname>:<yourpass><your_db_connection_link>"
 mongoose.connect(dbURI)
 .then(result => console.log('connected'))
 .catch(err => console.log(err))
