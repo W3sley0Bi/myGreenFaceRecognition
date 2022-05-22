@@ -14,5 +14,5 @@ Download the project and:
 ## Test on my heroku site. 
   if u what to test my application directly go to https://face-greenpass.herokuapp.com/.
   
-##Bugs 
+## Bugs
   Heroku has an ephemeral fs. your recognition system will work just for 30min average. After that time, you may do another registration of yourself. the login section is useless for now. 
